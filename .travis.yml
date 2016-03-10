@@ -1,11 +1,14 @@
 language: java
 jdk:
   - oraclejdk8
+sudo: required
+install: true
 before_install:
  - chmod +x gradlew
 notifications:
   slack: tecnicas7510-01-2016:43BRCtpL4l34RXwewR6Lv3z4
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+script:
+  - sudo apt-get update && sudo apt-get install oracle-java8-installer
+  - java -version
+
+
