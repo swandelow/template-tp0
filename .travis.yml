@@ -3,6 +3,10 @@ jdk:
   - oraclejdk8
 before_install:
  - chmod +x gradlew
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
 notifications:
   slack: tecnicas7510-01-2016:43BRCtpL4l34RXwewR6Lv3z4
 
