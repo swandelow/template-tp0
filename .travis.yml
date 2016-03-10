@@ -1,0 +1,7 @@
+language: java
+jdk:
+  - oraclejdk8
+before_install:
+ - chmod +x gradlew
+notifications:
+  slack: tecnicas7510-01-2016:43BRCtpL4l34RXwewR6Lv3z4
