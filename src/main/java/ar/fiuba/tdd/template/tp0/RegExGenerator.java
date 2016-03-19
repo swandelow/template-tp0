@@ -16,9 +16,9 @@ public class RegExGenerator {
     public List<String> generate(String regEx, int numberOfResults) {
         List<Token> tokens = this.tokenizer.tokenize(regEx);
         List<String> strings = new ArrayList<>(numberOfResults);
-        for(int i=0; i < numberOfResults; i++) {
+        for (int i = 0; i < numberOfResults; i++) {
             StringBuffer stringBuffer = new StringBuffer();
-            for(Token token : tokens) {
+            for (Token token : tokens) {
                 stringBuffer.append(token.generate(this.maxLength));
             }
             strings.add(stringBuffer.toString());

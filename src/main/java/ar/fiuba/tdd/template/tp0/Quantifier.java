@@ -29,7 +29,7 @@ public enum Quantifier {
 
     private static String repeat(String character, int times) {
         StringBuffer stringBuffer = new StringBuffer();
-        for(int i=0; i < times; i++) {
+        for (int i = 0; i < times; i++) {
             stringBuffer.append(character);
         }
         return stringBuffer.toString();

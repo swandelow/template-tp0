@@ -15,8 +15,8 @@ public abstract class AbstractStringGenerator {
     }
 
     public static String groupCharGenerator(String term, Quantifier quantifier, int limit) {
-        final String[] characters = term.substring(1, term.length() -1).split("");
-        String character = characters[RandomUtils.randomInt(0, characters.length -1)];
+        final String[] characters = term.substring(1, term.length() - 1).split("");
+        String character = characters[RandomUtils.randomInt(0, characters.length - 1)];
         return quantifier != null ? quantifier.apply(character, limit) : character;
     }
 

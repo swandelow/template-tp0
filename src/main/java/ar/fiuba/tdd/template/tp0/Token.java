@@ -28,12 +28,17 @@ public class Token {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null) return false;
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Token)) {
+            return false;
+        }
         Token other = (Token) obj;
         if (this.term.equals(other.getTerm())) {
 
             boolean nullQuantifiers = this.quantifier == null && other.getQuantifier() == null;
-            if(nullQuantifiers) {
+            if (nullQuantifiers) {
                 return true;
             } else {
                 return this.quantifier.equals(other.getQuantifier());
@@ -41,5 +46,10 @@ public class Token {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

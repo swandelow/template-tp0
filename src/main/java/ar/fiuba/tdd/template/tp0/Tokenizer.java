@@ -32,7 +32,9 @@ public class Tokenizer {
                 do {
                     character = characters[this.getIndex()];
                     stringBuilder.append(character);
-                    if (!character.equals("]")) this.incrementIndex();
+                    if (!character.equals("]")) {
+                        this.incrementIndex();
+                    }
                 } while (!character.equals("]") && this.getIndex() < characters.length);
 
                 term = stringBuilder.toString();
