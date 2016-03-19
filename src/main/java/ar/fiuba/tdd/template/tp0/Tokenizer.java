@@ -38,7 +38,7 @@ public class Tokenizer {
                 term = stringBuilder.toString();
                 quantifier = this.getQuantifier(characters);
                 this.incrementIndex();
-                tokens.add(new Token(term, quantifier));
+                tokens.add(new Token(term, quantifier, AbstractStringGenerator::groupCharGenerator));
                 continue;
             }
             //TODO fixear esto!
@@ -51,14 +51,14 @@ public class Tokenizer {
                 term = stringBuilder.toString();
                 quantifier = this.getQuantifier(characters);
                 this.incrementIndex();
-                tokens.add(new Token(term, quantifier));
+                tokens.add(new Token(term, quantifier, null));
                 continue;
             }
 
             term = character;
             quantifier = this.getQuantifier(characters);
             this.incrementIndex();
-            tokens.add(new Token(term, quantifier));
+            tokens.add(new Token(term, quantifier, AbstractStringGenerator::charGenerator));
         }
 
         return tokens;

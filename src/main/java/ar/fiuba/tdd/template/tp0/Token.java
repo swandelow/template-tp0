@@ -8,9 +8,10 @@ public class Token {
     private Quantifier quantifier;
     private StringGenerator generator;
 
-    public Token(String term, Quantifier quantifier) {
+    public Token(String term, Quantifier quantifier, StringGenerator generator) {
         this.term = term;
         this.quantifier = quantifier;
+        this.generator = generator;
     }
 
     public String getTerm() {
@@ -19,6 +20,10 @@ public class Token {
 
     public Quantifier getQuantifier() {
         return quantifier;
+    }
+
+    public String generate(int limit) {
+        return this.generator.generate(this.term, this.quantifier, limit);
     }
 
     @Override

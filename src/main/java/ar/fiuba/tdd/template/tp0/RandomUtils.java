@@ -11,4 +11,9 @@ public abstract class RandomUtils {
         Random random = new Random();
         return random.nextInt((max - min) + 1) + min;
     }
+
+    public static String randomChar() {
+        char character = (char) RandomUtils.randomInt(97, 122);
+        return String.valueOf(character);
+    }
 }
