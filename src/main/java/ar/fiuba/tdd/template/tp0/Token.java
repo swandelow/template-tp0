@@ -5,9 +5,10 @@ package ar.fiuba.tdd.template.tp0;
  */
 public class Token {
     private String term;
-    private String quantifier;
+    private Quantifier quantifier;
+    private StringGenerator generator;
 
-    public Token(String term, String quantifier) {
+    public Token(String term, Quantifier quantifier) {
         this.term = term;
         this.quantifier = quantifier;
     }
@@ -16,7 +17,7 @@ public class Token {
         return term;
     }
 
-    public String getQuantifier() {
+    public Quantifier getQuantifier() {
         return quantifier;
     }
 

@@ -24,7 +24,7 @@ public class Tokenizer {
         this.idx = 0;
         while (this.getIndex() < characters.length) {
             String term = null;
-            String quantifier = null;
+            Quantifier quantifier = null;
             String character = characters[this.getIndex()];
             // caso conjunto
             if (character.equals("[")) {
@@ -64,12 +64,12 @@ public class Tokenizer {
         return tokens;
     }
 
-    private String getQuantifier(String[] characters) {
-        String quantifier = null;
+    private Quantifier getQuantifier(String[] characters) {
+        Quantifier quantifier = null;
         if (this.getIndex() + 1 < characters.length) {
             String nextCharacter = characters[this.getIndex() + 1];
             if (isQuantifier(nextCharacter)) {
-                quantifier = nextCharacter;
+                quantifier = Quantifier.getQuantifier(nextCharacter);
                 this.incrementIndex();
             }
         }
@@ -77,7 +77,8 @@ public class Tokenizer {
     }
 
     private boolean isQuantifier(String character) {
-        return this.quantifiers.contains(character);
+        Quantifier quantifier = Quantifier.getQuantifier(character);
+        return quantifier != null;
     }
 
     private void incrementIndex() {

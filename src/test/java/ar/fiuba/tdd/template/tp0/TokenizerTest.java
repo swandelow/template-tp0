@@ -32,10 +32,10 @@ public class TokenizerTest {
     public void regex_without_groups_with_quantifiers() {
         List<Token> expected = new ArrayList<Token>();
         expected.add(new Token("f", null));
-        expected.add(new Token("r", "*"));
+        expected.add(new Token("r", Quantifier.getQuantifier("*")));
         expected.add(new Token("u", null));
-        expected.add(new Token("t", "?"));
-        expected.add(new Token("a", "+"));
+        expected.add(new Token("t", Quantifier.getQuantifier("?")));
+        expected.add(new Token("a", Quantifier.getQuantifier("+")));
 
         List<Token> result = this.target.tokenize("fr*ut?a+");
 
@@ -59,9 +59,9 @@ public class TokenizerTest {
     public void regex_with_groups_with_quantifiers() {
         List<Token> expected = new ArrayList<Token>();
         expected.add(new Token("f", null));
-        expected.add(new Token("r", "*"));
+        expected.add(new Token("r", Quantifier.getQuantifier("*")));
         expected.add(new Token("u", null));
-        expected.add(new Token("[ta]", "?"));
+        expected.add(new Token("[ta]", Quantifier.getQuantifier("?")));
 
         List<Token> result = this.target.tokenize("fr*u[ta]?");
 
@@ -84,10 +84,19 @@ public class TokenizerTest {
     public void regex_escaped_chars_with_quantifiers() {
         List<Token> expected = new ArrayList<Token>();
         expected.add(new Token("f", null));
-        expected.add(new Token("\\[", "*"));
+        expected.add(new Token("\\[", Quantifier.getQuantifier("*")));
         expected.add(new Token("u", null));
 
         List<Token> result = this.target.tokenize("f\\[*u");
+
+        this.validate(expected, result);
+        expected.clear();
+
+        expected.add(new Token("\\", null));
+        expected.add(new Token("@", null));
+        expected.add(new Token(".", null));
+        expected.add(new Token("h", Quantifier.getQuantifier("?")));
+        result = this.target.tokenize("\\@.h?");
 
         this.validate(expected, result);
     }
