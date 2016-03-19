@@ -8,14 +8,10 @@ import java.util.List;
  */
 public class Tokenizer {
 
-    private List<String> quantifiers = new ArrayList<>();
     private int idx;
 
     public Tokenizer() {
         this.idx = 0;
-        this.quantifiers.add("?");
-        this.quantifiers.add("*");
-        this.quantifiers.add("+");
     }
 
     public List<Token> tokenize(String regex) {
