@@ -10,9 +10,9 @@ public class QuantifierTest {
 
     @Test
     public void get_quantifier_method() {
-        Assert.assertEquals(Quantifier.ONCE_OR_NOT_AT_ALL, Quantifier.getQuantifier("?"));
-        Assert.assertEquals(Quantifier.ZERO_OR_MORE_TIMES, Quantifier.getQuantifier("*"));
-        Assert.assertEquals(Quantifier.ONE_OR_MORE_TIMES, Quantifier.getQuantifier("+"));
+        Assert.assertEquals(Quantifier.ONCE_OR_NOT_AT_ALL, Quantifier.getQuantifier('?'));
+        Assert.assertEquals(Quantifier.ZERO_OR_MORE_TIMES, Quantifier.getQuantifier('*'));
+        Assert.assertEquals(Quantifier.ONE_OR_MORE_TIMES, Quantifier.getQuantifier('+'));
     }
 
 }

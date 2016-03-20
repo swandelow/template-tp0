@@ -35,15 +35,15 @@ public enum Quantifier {
         return stringBuffer.toString();
     }
 
-    private static Map<String, Quantifier> quantifiers = new HashMap<String, Quantifier>() {
+    private static Map<Character, Quantifier> quantifiers = new HashMap<Character, Quantifier>() {
         {
-            put("?", ONCE_OR_NOT_AT_ALL);
-            put("*", ZERO_OR_MORE_TIMES);
-            put("+", ONE_OR_MORE_TIMES);
+            put('?', ONCE_OR_NOT_AT_ALL);
+            put('*', ZERO_OR_MORE_TIMES);
+            put('+', ONE_OR_MORE_TIMES);
         }
     };
 
-    public static Quantifier getQuantifier(String quantifierSymbol) {
+    public static Quantifier getQuantifier(Character quantifierSymbol) {
         return quantifiers.get(quantifierSymbol);
     }
 
