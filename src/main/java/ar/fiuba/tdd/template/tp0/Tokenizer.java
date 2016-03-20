@@ -39,7 +39,6 @@ public class Tokenizer {
                 tokens.add(new Token(term, quantifier, AbstractStringGenerator::groupCharGenerator));
                 continue;
             }
-            //TODO fixear esto!
             // caso caracter reservado
             if (character.equals("\\")) {
                 StringBuilder stringBuilder = new StringBuilder();
@@ -49,7 +48,7 @@ public class Tokenizer {
                 term = stringBuilder.toString();
                 quantifier = this.getQuantifier(characters);
                 this.incrementIndex();
-                tokens.add(new Token(term, quantifier, null));
+                tokens.add(new Token(term, quantifier, AbstractStringGenerator::escapedCharGenerator));
                 continue;
             }
 

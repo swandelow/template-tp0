@@ -20,4 +20,9 @@ public abstract class AbstractStringGenerator {
         return quantifier != null ? quantifier.apply(character, limit) : character;
     }
 
+    public static String escapedCharGenerator(String term, Quantifier quantifier, int limit) {
+        String character = term.substring(1);
+        return quantifier != null ? quantifier.apply(character, limit) : character;
+    }
+
 }

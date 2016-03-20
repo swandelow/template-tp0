@@ -16,9 +16,9 @@ public class RegExGeneratorTest {
         // force matching the beginning and the end of the strings
         Pattern pattern = Pattern.compile("^" + regEx + "$");
         return results.stream().reduce(true, (acc, item) -> {
-                Matcher matcher = pattern.matcher(item);
-                return acc && matcher.find();
-            }, (item1, item2) -> item1 && item2);
+            Matcher matcher = pattern.matcher(item);
+            return acc && matcher.find();
+        }, (item1, item2) -> item1 && item2);
     }
 
 
@@ -33,8 +33,6 @@ public class RegExGeneratorTest {
         assertTrue(validate("...", 1));
     }
 
-    //TODO: Uncomment these tests
-    /*
     @Test
     public void testLiteral() {
         assertTrue(validate("\\@", 1));
@@ -50,7 +48,6 @@ public class RegExGeneratorTest {
         assertTrue(validate("\\@.h?", 1));
     }
 
-*/
     @Test
     public void testCharacterSet() {
         assertTrue(validate("[abc]", 1));
@@ -66,5 +63,4 @@ public class RegExGeneratorTest {
         assertTrue(validate("..+[ab]*d?c", 3));
     }
 
-    // TODO: Add more tests!!!
 }

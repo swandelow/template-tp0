@@ -90,18 +90,8 @@ public class TokenizerTest {
         List<Token> result = this.target.tokenize("f\\[*u");
 
         this.validate(expected, result);
-        expected.clear();
-
-        /*
-        expected.add(new Token("\\", null,null));
-        expected.add(new Token("@", null,null));
-        expected.add(new Token(".", null,null));
-        expected.add(new Token("h", Quantifier.getQuantifier("?"),null));
-        result = this.target.tokenize("\\@.h?");
-
-        this.validate(expected, result);
-        */
     }
+
 
     private void validate(List<Token> expected, List<Token> result) {
         Assert.assertEquals(result.size(), expected.size());
