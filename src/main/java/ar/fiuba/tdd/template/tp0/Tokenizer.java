@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.template.tp0;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,46 +20,55 @@ public class Tokenizer {
         String[] characters = regex.split("");
         this.idx = 0;
         while (this.getIndex() < characters.length) {
-            String term = null;
-            Quantifier quantifier = null;
             String character = characters[this.getIndex()];
             // caso conjunto
             if (character.equals("[")) {
-                StringBuilder stringBuilder = new StringBuilder();
-                do {
-                    character = characters[this.getIndex()];
-                    stringBuilder.append(character);
-                    if (!character.equals("]")) {
-                        this.incrementIndex();
-                    }
-                } while (!character.equals("]") && this.getIndex() < characters.length);
-
-                term = stringBuilder.toString();
-                quantifier = this.getQuantifier(characters);
-                this.incrementIndex();
-                tokens.add(new Token(term, quantifier, AbstractStringGenerator::groupCharGenerator));
+                Token token = this.parseCharacterSet(characters);
+                tokens.add(token);
                 continue;
             }
             // caso caracter reservado
             if (character.equals("\\")) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(characters[this.getIndex()]);
-                this.incrementIndex();
-                stringBuilder.append(characters[this.getIndex()]);
-                term = stringBuilder.toString();
-                quantifier = this.getQuantifier(characters);
-                this.incrementIndex();
-                tokens.add(new Token(term, quantifier, AbstractStringGenerator::escapedCharGenerator));
+                Token token = this.parseLiteral(characters);
+                tokens.add(token);
                 continue;
             }
 
-            term = character;
-            quantifier = this.getQuantifier(characters);
+            String term = character;
+            Quantifier quantifier = this.getQuantifier(characters);
             this.incrementIndex();
             tokens.add(new Token(term, quantifier, AbstractStringGenerator::charGenerator));
         }
 
         return tokens;
+    }
+
+    private Token parseCharacterSet(String[] characters) {
+        String character;
+        StringBuilder stringBuilder = new StringBuilder();
+        do {
+            character = characters[this.getIndex()];
+            stringBuilder.append(character);
+            if (!character.equals("]")) {
+                this.incrementIndex();
+            }
+        } while (!character.equals("]") && this.getIndex() < characters.length);
+
+        String term = stringBuilder.toString();
+        Quantifier quantifier = this.getQuantifier(characters);
+        this.incrementIndex();
+        return new Token(term, quantifier, AbstractStringGenerator::groupCharGenerator);
+    }
+
+    private Token parseLiteral(String[] characters) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(characters[this.getIndex()]);
+        this.incrementIndex();
+        stringBuilder.append(characters[this.getIndex()]);
+        String term = stringBuilder.toString();
+        Quantifier quantifier = this.getQuantifier(characters);
+        this.incrementIndex();
+        return new Token(term, quantifier, AbstractStringGenerator::escapedCharGenerator);
     }
 
     private Quantifier getQuantifier(String[] characters) {

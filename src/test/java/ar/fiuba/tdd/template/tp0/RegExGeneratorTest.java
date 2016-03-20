@@ -63,4 +63,14 @@ public class RegExGeneratorTest {
         assertTrue(validate("..+[ab]*d?c", 3));
     }
 
+    @Test
+    public void testDotAsLiteral() {
+        assertTrue(validate("\\.+a", 3));
+    }
+
+    @Test
+    public void testBackslashAsLiteral() {
+        assertTrue(validate("\\\\*b?", 3));
+    }
+
 }
