@@ -28,24 +28,16 @@ public class Token {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
         if (!(obj instanceof Token)) {
             return false;
         }
         Token other = (Token) obj;
-        if (this.term.equals(other.getTerm())) {
-
+        if ((this.quantifier != null) == (other.getQuantifier() != null)) {
             boolean nullQuantifiers = this.quantifier == null && other.getQuantifier() == null;
-            if (nullQuantifiers) {
-                return true;
-            } else {
-                return this.quantifier.equals(other.getQuantifier());
-            }
-        } else {
-            return false;
+            boolean sameTerm = this.term.equals(other.getTerm());
+            return nullQuantifiers ? sameTerm : sameTerm && this.quantifier.equals(other.getQuantifier());
         }
+        return false;
     }
 
     @Override
